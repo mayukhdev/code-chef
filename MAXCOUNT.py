@@ -1,22 +1,28 @@
 def main():
     t = int(raw_input())
-    nInt = []
     for times in range(t):
+        inp = []
+        nInt = {}
         n = int(raw_input()) #len of array
         inp = map(int,raw_input().split())
         value = 0
         count = 0
-        for i in range(10001):
-            nInt.append(0)
+        for i in range(n):
+            nInt[inp[i]]=0
         for i in range(n):
             nInt[inp[i]]+=1
-        for i in range(len(nInt)):
-            if nInt[i]>count:
-                count = nInt[i]
-                value = i
+        for val in nInt:
+            if nInt[val]>=count:
+                if count==0:
+                    value = val
+                elif value>val and nInt[val]==count and count!=0:
+                    value = val
+                elif nInt[val]>count:
+                    value = val
+                count = nInt[val]
+
         print str(value)+" "+str(count)
-        inp = []
-        nInt = []
+        
 
 if __name__=="__main__":
     main()
